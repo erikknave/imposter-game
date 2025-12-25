@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://imposterplay.com/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://imposterplay.com/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://imposterplay.com/sv" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://imposterplay.com/fr" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://imposterplay.com/zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://imposterplay.com/" />
+  </url>
+  <url>
+    <loc>https://imposterplay.com/sv</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://imposterplay.com/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://imposterplay.com/sv" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://imposterplay.com/fr" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://imposterplay.com/zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://imposterplay.com/" />
+  </url>
+  <url>
+    <loc>https://imposterplay.com/fr</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://imposterplay.com/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://imposterplay.com/sv" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://imposterplay.com/fr" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://imposterplay.com/zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://imposterplay.com/" />
+  </url>
+  <url>
+    <loc>https://imposterplay.com/zh</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://imposterplay.com/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://imposterplay.com/sv" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://imposterplay.com/fr" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://imposterplay.com/zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://imposterplay.com/" />
+  </url>
+</urlset>

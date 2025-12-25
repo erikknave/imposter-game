@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Ring -->
+  <circle cx="50" cy="50" r="45" stroke="#22c55e" stroke-width="6" />
+  
+  <!-- Spy Icon -->
+  <g fill="#22c55e">
+    <!-- Fedora Hat -->
+    <path d="M25 45 L75 45 L70 35 Q70 25 50 25 Q30 25 30 35 Z" />
+    <rect x="20" y="45" width="60" height="5" rx="2" />
+    
+    <!-- Glasses/Mask -->
+    <path d="M35 55 Q35 64 45 64 Q50 64 50 60 Q50 64 55 64 Q65 64 65 55 Z" />
+    
+    <!-- Trench Coat Collar -->
+    <path d="M30 70 L50 85 L70 70 L75 75 L50 92 L25 75 Z" />
+  </g>
+</svg>

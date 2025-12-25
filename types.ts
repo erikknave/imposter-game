@@ -1,7 +1,9 @@
 
 export enum Language {
   EN = 'en',
-  SV = 'sv'
+  SV = 'sv',
+  FR = 'fr',
+  ZH = 'zh-CN'
 }
 
 export enum GameScreen {
@@ -37,6 +39,7 @@ export interface Player {
   id: number;
   name: string;
   role: 'INNOCENT' | 'IMPOSTER';
+  isCustomName?: boolean;
 }
 
 export interface WordEntry {
@@ -54,5 +57,6 @@ export interface GameState {
   startingPlayerId: number;
   currentTurnIndex: number; 
   usedWords: Record<string, string[]>;
+  playerNames: Record<number, string>;
   roundId: number;
 }

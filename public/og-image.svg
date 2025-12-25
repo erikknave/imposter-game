@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  
+  <!-- Decorative Grid/Mesh -->
+  <path d="M0 0 L1200 630 M1200 0 L0 630" stroke="#22c55e" stroke-opacity="0.05" stroke-width="2"/>
+  <circle cx="600" cy="315" r="400" fill="url(#grad)" fill-opacity="0.1"/>
+  
+  <defs>
+    <radialGradient id="grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Centered Logo -->
+  <g transform="translate(450, 115) scale(3)">
+    <circle cx="50" cy="50" r="45" stroke="#22c55e" stroke-width="4" />
+    <g fill="#22c55e">
+      <path d="M25 45 L75 45 L70 35 Q70 25 50 25 Q30 25 30 35 Z" />
+      <rect x="20" y="45" width="60" height="4" rx="2" />
+      <path d="M35 55 Q35 62 45 62 Q50 62 50 58 Q50 62 55 62 Q65 62 65 55 Z" />
+      <path d="M30 70 L50 85 L70 70 L75 75 L50 92 L25 75 Z" />
+    </g>
+  </g>
+
+  <!-- Title Text -->
+  <text x="600" y="520" font-family="Arial, sans-serif" font-size="64" font-weight="900" fill="white" text-anchor="middle" letter-spacing="8">IMPOSTER GAME</text>
+  <text x="600" y="570" font-family="Arial, sans-serif" font-size="24" font-weight="400" fill="#22c55e" text-anchor="middle" letter-spacing="4">SOCIAL DEDUCTION PARTY GAME</text>
+</svg>

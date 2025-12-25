@@ -1,0 +1,7 @@
+# Handle SPA routing for localized paths
+/sv/* /index.html 200
+/fr/* /index.html 200
+/zh/* /index.html 200
+
+# Catch-all for other paths
+/* /index.html 200

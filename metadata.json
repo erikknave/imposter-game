@@ -1,0 +1,5 @@
+{
+  "name": "Imposter Game",
+  "description": "A mobile-first social deduction game where players give clues to a secret word while one hidden Imposter tries to blend in. Perfect for pass-and-play with friends!",
+  "requestFramePermissions": []
+}

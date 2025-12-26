@@ -60,7 +60,7 @@ export default function App() {
             lang={state.settings.language}
             player={state.players[state.currentTurnIndex]} 
             word={state.secretWord} 
-            category={state.settings.category}
+            category={state.currentCategory}
             imposterHint={state.imposterClue}
             showHints={state.settings.showImposterHints}
             isLast={state.currentTurnIndex === state.settings.playerCount - 1} 

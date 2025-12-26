@@ -50,7 +50,7 @@ const INITIAL_STATE: GameState = {
   screen: GameScreen.HOME,
   settings: {
     playerCount: 4,
-    category: Category.ALL,
+    categories: [Category.ALL],
     showImposterHints: true,
     language: Language.EN
   },
@@ -62,7 +62,8 @@ const INITIAL_STATE: GameState = {
   currentTurnIndex: 0,
   usedWords: {},
   playerNames: {},
-  roundId: 0
+  roundId: 0,
+  currentCategory: Category.ALL
 };
 
 export function useGameState() {
@@ -161,29 +162,53 @@ export function useGameState() {
   const initGame = useCallback((settings: GameSettings) => {
     setState(prev => {
       const lang = settings.language;
-      const category = settings.category;
+      const categories = settings.categories;
       
-      let wordsInCategory: WordEntry[] = [];
-      if (category === Category.ALL) {
-        // Flatten all categories except ALL itself
-        wordsInCategory = Object.entries(WORD_LIST[lang])
-          .filter(([cat]) => cat !== Category.ALL)
-          .flatMap(([, words]) => words);
-      } else {
-        wordsInCategory = WORD_LIST[lang][category] || [];
+      interface WordWithCat {
+        word: WordEntry;
+        cat: Category;
       }
 
-      const categoryHistory = prev.usedWords[`${lang}_${category}`] || [];
+      let wordsWithCategory: WordWithCat[] = [];
+      if (categories.includes(Category.ALL)) {
+        // Flatten all categories except ALL itself
+        Object.entries(WORD_LIST[lang])
+          .filter(([cat]) => cat !== Category.ALL)
+          .forEach(([cat, words]) => {
+            words.forEach(w => wordsWithCategory.push({ word: w, cat: cat as Category }));
+          });
+      } else {
+        categories.forEach(cat => {
+          const words = WORD_LIST[lang][cat] || [];
+          words.forEach(w => wordsWithCategory.push({ word: w, cat }));
+        });
+      }
+
+      const allRelevantCats = categories.includes(Category.ALL)
+        ? Object.values(Category).filter(c => c !== Category.ALL)
+        : categories;
+
+      const combinedHistory = allRelevantCats.reduce((acc, cat) => {
+        const catHistory = prev.usedWords[`${lang}_${cat}`] || [];
+        return [...acc, ...catHistory];
+      }, [] as string[]);
+
+      // Also include history from the legacy 'All' key if present
+      const legacyAllHistory = prev.usedWords[`${lang}_${Category.ALL}`] || [];
+      const totalHistory = [...combinedHistory, ...legacyAllHistory];
       
       // Filter candidates
-      let candidates = wordsInCategory.filter(w => !categoryHistory.includes(w.word));
+      let candidates = wordsWithCategory.filter(w => !totalHistory.includes(w.word.word));
       
-      // If all used, reset history for this cat
+      // If all used, reset for these candidates
       if (candidates.length === 0) {
-        candidates = wordsInCategory;
+        candidates = wordsWithCategory;
       }
 
-      const chosen = candidates[Math.floor(Math.random() * candidates.length)];
+      const chosenEntry = candidates[Math.floor(Math.random() * candidates.length)];
+      const chosen = chosenEntry.word;
+      const chosenCat = chosenEntry.cat;
+
       const imposterId = Math.floor(Math.random() * settings.playerCount) + 1;
       const startingPlayerId = Math.floor(Math.random() * settings.playerCount) + 1;
       
@@ -198,11 +223,20 @@ export function useGameState() {
         };
       });
 
-      // History logic: keep history but reset if we just used the last word
-      const finalHistory = candidates.length === 1 && wordsInCategory.length > 1 ? [chosen.word] : [...categoryHistory, chosen.word];
+      // Update history for the specific category the word came from
+      const wordsInChosenCat = WORD_LIST[lang][chosenCat] || [];
+      const currentCatHistory = prev.usedWords[`${lang}_${chosenCat}`] || [];
+      
+      let newCatHistory: string[];
+      if (currentCatHistory.length + 1 >= wordsInChosenCat.length) {
+        newCatHistory = [chosen.word];
+      } else {
+        newCatHistory = [...currentCatHistory, chosen.word];
+      }
+
       const newHistory = {
         ...prev.usedWords,
-        [`${lang}_${category}`]: finalHistory
+        [`${lang}_${chosenCat}`]: newCatHistory
       };
 
       saveToLocalStorage(settings, newHistory);
@@ -218,7 +252,8 @@ export function useGameState() {
         usedWords: newHistory,
         screen: GameScreen.REVEAL,
         currentTurnIndex: 0,
-        roundId: (prev.roundId || 0) + 1
+        roundId: (prev.roundId || 0) + 1,
+        currentCategory: chosenCat
       };
     });
   }, [saveToLocalStorage]);

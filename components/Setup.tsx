@@ -52,15 +52,36 @@ export const Setup: React.FC<SetupProps> = ({ initialSettings, onStartGame, onBa
         <div>
           <label className="block text-indigo-200 text-sm font-bold uppercase mb-4 tracking-wider">{t.category}</label>
           <div className="grid grid-cols-2 gap-3">
-            {Object.values(Category).map(cat => (
-              <button
-                key={cat}
-                onClick={() => setSettings({...settings, category: cat})}
-                className={`py-3 px-4 rounded-xl text-sm font-semibold border-2 transition-all ${settings.category === cat ? 'bg-indigo-500 border-white text-white' : 'bg-white/5 border-white/10 text-white/60'}`}
-              >
-                {t.category_names[cat]}
-              </button>
-            ))}
+            {Object.values(Category).map(cat => {
+              const isSelected = settings.categories.includes(cat);
+              return (
+                <button
+                  key={cat}
+                  onClick={() => {
+                    let newCats: Category[];
+                    if (cat === Category.ALL) {
+                      newCats = [Category.ALL];
+                    } else {
+                      // Remove ALL if selecting a specific category
+                      const filtered = settings.categories.filter(c => c !== Category.ALL);
+                      if (isSelected) {
+                        // Deselect
+                        newCats = filtered.filter(c => c !== cat);
+                        // If empty, default back to ALL or keep empty (but initGame might fail if empty)
+                        if (newCats.length === 0) newCats = [Category.ALL];
+                      } else {
+                        // Select
+                        newCats = [...filtered, cat];
+                      }
+                    }
+                    setSettings({...settings, categories: newCats});
+                  }}
+                  className={`py-3 px-4 rounded-xl text-sm font-semibold border-2 transition-all ${isSelected ? 'bg-indigo-500 border-white text-white' : 'bg-white/5 border-white/10 text-white/60'}`}
+                >
+                  {t.category_names[cat]}
+                </button>
+              );
+            })}
           </div>
         </div>
 

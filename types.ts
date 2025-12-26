@@ -33,7 +33,7 @@ export enum Category {
 
 export interface GameSettings {
   playerCount: number;
-  category: Category;
+  categories: Category[];
   showImposterHints: boolean;
   language: Language;
 }
@@ -62,4 +62,5 @@ export interface GameState {
   usedWords: Record<string, string[]>;
   playerNames: Record<number, string>;
   roundId: number;
+  currentCategory: Category;
 }

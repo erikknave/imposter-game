@@ -9,6 +9,9 @@ const detectBrowserLanguage = (): Language => {
     
     if (langCode === 'sv') return Language.SV;
     if (langCode === 'fr') return Language.FR;
+    if (langCode === 'es') return Language.ES;
+    if (langCode === 'de') return Language.DE;
+    if (langCode === 'hi') return Language.HI;
     if (langCode === 'zh') return Language.ZH;
     return Language.EN;
   } catch (e) {
@@ -21,6 +24,9 @@ const getLanguageFromPath = (): Language | null => {
     const path = window.location.pathname.split('/')[1]?.toLowerCase();
     if (path === 'sv') return Language.SV;
     if (path === 'fr') return Language.FR;
+    if (path === 'es') return Language.ES;
+    if (path === 'de') return Language.DE;
+    if (path === 'hi') return Language.HI;
     if (path === 'zh' || path === 'zh-cn') return Language.ZH;
     if (path === 'en') return Language.EN;
     
@@ -28,6 +34,9 @@ const getLanguageFromPath = (): Language | null => {
     const hash = window.location.hash.replace('#', '').toLowerCase();
     if (hash === 'sv') return Language.SV;
     if (hash === 'fr') return Language.FR;
+    if (hash === 'es') return Language.ES;
+    if (hash === 'de') return Language.DE;
+    if (hash === 'hi') return Language.HI;
     if (hash === 'zh' || hash === 'zh-cn') return Language.ZH;
     if (hash === 'en') return Language.EN;
     

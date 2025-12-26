@@ -37,6 +37,27 @@ export const Home: React.FC<HomeProps> = ({ lang, onStart, onHowTo, onLanguageCh
           FR
         </button>
         <button 
+          onClick={() => onLanguageChange(Language.ES)}
+          className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${lang === Language.ES ? 'bg-white text-indigo-900 shadow-lg' : 'text-white/60 hover:text-white'}`}
+          aria-label="Español"
+        >
+          ES
+        </button>
+        <button 
+          onClick={() => onLanguageChange(Language.DE)}
+          className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${lang === Language.DE ? 'bg-white text-indigo-900 shadow-lg' : 'text-white/60 hover:text-white'}`}
+          aria-label="Deutsch"
+        >
+          DE
+        </button>
+        <button 
+          onClick={() => onLanguageChange(Language.HI)}
+          className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${lang === Language.HI ? 'bg-white text-indigo-900 shadow-lg' : 'text-white/60 hover:text-white'}`}
+          aria-label="हिंदी"
+        >
+          HI
+        </button>
+        <button 
           onClick={() => onLanguageChange(Language.ZH)}
           className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${lang === Language.ZH ? 'bg-white text-indigo-900 shadow-lg' : 'text-white/60 hover:text-white'}`}
           aria-label="中文"

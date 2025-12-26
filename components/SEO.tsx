@@ -29,6 +29,21 @@ const SEO_META: Record<Language, {
     title: '内鬼游戏 - 社交推理派对游戏 | 传递游戏',
     description: '玩内鬼游戏，一个有趣的社交推理游戏，玩家给一个秘密词提供线索，而一个隐藏的内鬼试图融入。非常适合聚会和朋友！',
     keywords: '内鬼游戏, 社交推理游戏, 派对游戏, 猜词游戏, 传递游戏'
+  },
+  [Language.ES]: {
+    title: 'Juego del Impostor - Juego de Mesa de Deducción Social | Pasa y Juega',
+    description: 'Juega al Impostor, un divertido juego de deducción social donde los jugadores dan pistas sobre una palabra secreta mientras un Impostor oculto intenta mezclarse. ¡Ideal para fiestas!',
+    keywords: 'juego del impostor, juego de deducción social, juego de mesa, juego de adivinar palabras, pasa y juega, juego estilo among us'
+  },
+  [Language.HI]: {
+    title: 'इम्पोस्टर गेम - सामाजिक कटौती पार्टी गेम | पास एंड प्ले',
+    description: 'इम्पोस्टर खेलें, एक मजेदार सामाजिक कटौती खेल जहाँ खिलाड़ी एक गुप्त शब्द के संकेत देते हैं जबकि एक छिपा हुआ इम्पोस्टर घुलने-मिलने की कोशिश करता है। पार्टियों के लिए बिल्कुल सही!',
+    keywords: 'इम्पोस्टर गेम, सामाजिक कटौती खेल, पार्टी गेम, शब्द अनुमान लगाने वाला खेल, पास और प्ले खेल'
+  },
+  [Language.DE]: {
+    title: 'Imposter Spiel - Social Deduction Party Spiel | Pass & Play',
+    description: 'Spiele Imposter, ein lustiges Social Deduction Spiel, bei dem Spieler Hinweise auf ein geheimes Wort geben, während ein versteckter Imposter versucht, sich anzupassen. Perfekt für Partys!',
+    keywords: 'imposter spiel, social deduction spiel, party spiel, wort ratespiel, pass and play spiel, among us stil spiel'
   }
 };
 
@@ -84,7 +99,7 @@ export const SEO: React.FC<SEOProps> = ({ language }) => {
     canonical.href = currentUrl;
 
     // Hreflang tags for language alternates
-    const languages = [Language.EN, Language.SV, Language.FR, Language.ZH];
+    const languages = [Language.EN, Language.SV, Language.FR, Language.ES, Language.DE, Language.HI, Language.ZH];
     languages.forEach(lang => {
       const code = lang === Language.ZH ? 'zh-CN' : lang;
       const path = lang === Language.EN ? '' : (lang === Language.ZH ? '/zh' : `/${lang}`);

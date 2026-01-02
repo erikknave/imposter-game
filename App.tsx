@@ -1,6 +1,7 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
+import ReactGA from 'react-ga4';
 import { GameScreen } from './types';
-import { UI_STRINGS, UI_ICONS } from './constants';
+import { UI_STRINGS, UI_ICONS, GA_MEASUREMENT_ID } from './constants';
 import { useGameState } from './hooks/useGameState';
 import { SEO } from './components/SEO';
 import { Home } from './components/Home';
@@ -14,14 +15,37 @@ export default function App() {
   const { state, setScreen, handleLanguageChange, initGame, handleRevealNext, updatePlayerName } = useGameState();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  useEffect(() => {
+    ReactGA.initialize(GA_MEASUREMENT_ID);
+  }, []);
+
+  useEffect(() => {
+    ReactGA.send({ 
+      hitType: "pageview", 
+      page: `/${state.screen.toLowerCase()}`,
+      title: `Screen: ${state.screen}`,
+      language: state.settings.language
+    });
+  }, [state.screen, state.settings.language]);
+
   const t = UI_STRINGS[state.settings.language];
 
   const handleNewWord = () => {
+    ReactGA.event({
+      category: 'Menu',
+      action: 'New Word',
+      label: state.settings.language
+    });
     initGame(state.settings);
     setIsMenuOpen(false);
   };
 
   const handleNewGame = () => {
+    ReactGA.event({
+      category: 'Menu',
+      action: 'New Game',
+      label: state.settings.language
+    });
     setScreen(GameScreen.HOME);
     setIsMenuOpen(false);
   };

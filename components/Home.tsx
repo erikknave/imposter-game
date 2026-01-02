@@ -58,6 +58,13 @@ export const Home: React.FC<HomeProps> = ({ lang, onStart, onHowTo, onLanguageCh
           HI
         </button>
         <button 
+          onClick={() => onLanguageChange(Language.RU)}
+          className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${lang === Language.RU ? 'bg-white text-indigo-900 shadow-lg' : 'text-white/60 hover:text-white'}`}
+          aria-label="Русский"
+        >
+          RU
+        </button>
+        <button 
           onClick={() => onLanguageChange(Language.ZH)}
           className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${lang === Language.ZH ? 'bg-white text-indigo-900 shadow-lg' : 'text-white/60 hover:text-white'}`}
           aria-label="中文"

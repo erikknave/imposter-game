@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import ReactGA from 'react-ga4';
 import { GameState, GameSettings, Category, Language, Player, WordEntry, GameScreen } from '../types';
 import { WORD_LIST, UI_STRINGS } from '../constants';
 
@@ -27,6 +28,7 @@ const getLanguageFromPath = (): Language | null => {
     if (path === 'es') return Language.ES;
     if (path === 'de') return Language.DE;
     if (path === 'hi') return Language.HI;
+    if (path === 'ru') return Language.RU;
     if (path === 'zh' || path === 'zh-cn') return Language.ZH;
     if (path === 'en') return Language.EN;
     
@@ -37,6 +39,7 @@ const getLanguageFromPath = (): Language | null => {
     if (hash === 'es') return Language.ES;
     if (hash === 'de') return Language.DE;
     if (hash === 'hi') return Language.HI;
+    if (hash === 'ru') return Language.RU;
     if (hash === 'zh' || hash === 'zh-cn') return Language.ZH;
     if (hash === 'en') return Language.EN;
     
@@ -144,6 +147,13 @@ export function useGameState() {
   }, []);
 
   const handleLanguageChange = useCallback((l: Language) => {
+    // Track language change event
+    ReactGA.event({
+      category: 'User',
+      action: 'Change Language',
+      label: l
+    });
+
     // Update URL path for deep linking
     const path = l === Language.ZH ? 'zh' : (l === Language.EN ? '' : l);
     const newPath = path ? `/${path}` : '/';
@@ -240,6 +250,14 @@ export function useGameState() {
       };
 
       saveToLocalStorage(settings, newHistory);
+
+      // Track game start event
+      ReactGA.event({
+        category: 'Game',
+        action: 'Start Game',
+        label: `${settings.language} | ${settings.playerCount} players`,
+        value: settings.playerCount
+      });
 
       return {
         ...prev,

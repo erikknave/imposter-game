@@ -44,6 +44,11 @@ const SEO_META: Record<Language, {
     title: 'Imposter Spiel - Social Deduction Party Spiel | Pass & Play',
     description: 'Spiele Imposter, ein lustiges Social Deduction Spiel, bei dem Spieler Hinweise auf ein geheimes Wort geben, während ein versteckter Imposter versucht, sich anzupassen. Perfekt für Partys!',
     keywords: 'imposter spiel, social deduction spiel, party spiel, wort ratespiel, pass and play spiel, among us stil spiel'
+  },
+  [Language.RU]: {
+    title: 'Игра Самозванец - Социальная дедуктивная пати-игра | Передай и играй',
+    description: 'Играйте в "Самозванца", веселую игру на социальную дедукцию, где игроки дают подсказки к секретному слову, а один скрытый Самозванец пытается не выдать себя. Идеально для вечеринок!',
+    keywords: 'игра самозванец, социальная дедукция, пати-игра, игра в слова, передай и играй, игра в стиле among us, мафия'
   }
 };
 
@@ -99,7 +104,7 @@ export const SEO: React.FC<SEOProps> = ({ language }) => {
     canonical.href = currentUrl;
 
     // Hreflang tags for language alternates
-    const languages = [Language.EN, Language.SV, Language.FR, Language.ES, Language.DE, Language.HI, Language.ZH];
+    const languages = [Language.EN, Language.SV, Language.FR, Language.ES, Language.DE, Language.HI, Language.ZH, Language.RU];
     languages.forEach(lang => {
       const code = lang === Language.ZH ? 'zh-CN' : lang;
       const path = lang === Language.EN ? '' : (lang === Language.ZH ? '/zh' : `/${lang}`);

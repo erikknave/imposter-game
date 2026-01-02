@@ -6,7 +6,8 @@ export enum Language {
   ES = 'es',
   DE = 'de',
   HI = 'hi',
-  ZH = 'zh-CN'
+  ZH = 'zh-CN',
+  RU = 'ru'
 }
 
 export enum GameScreen {

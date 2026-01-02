@@ -4,6 +4,7 @@
 /es/* /index.html 200
 /de/* /index.html 200
 /hi/* /index.html 200
+/ru/* /index.html 200
 /zh/* /index.html 200
 
 # Catch-all for other paths
